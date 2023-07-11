@@ -7,6 +7,8 @@ RUN apt-get -y update && apt-get -y install git unzip vim rsync
 RUN docker-php-ext-install pdo pdo_mysql
 
 RUN pecl install xdebug && docker-php-ext-enable xdebug;
+ENV PHP_IDE_CONFIG="serverName=host.docker.internal"
+
 COPY ./docker/configs/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 ENV TERM xterm-256color

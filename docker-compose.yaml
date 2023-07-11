@@ -1,4 +1,9 @@
 version: "3"
+
+networks:
+  backend1:
+    driver: bridge
+
 services:
 
   php:
@@ -15,6 +20,8 @@ services:
       - ./:${WORKDIR}
     links:
       - db_mysql
+    networks:
+      - backend1
 
   db_mysql:
     image: mysql:latest
@@ -30,6 +37,8 @@ services:
 
     volumes:
       - ./docker/databases/mysql_dump:/docker-entrypoint-initdb.d
+    networks:
+      - backend1
 
   nginx:
     image: nginx:latest
@@ -48,3 +57,5 @@ services:
       - ./logs/nginx:/var/log/nginx
     links:
       - php
+    networks:
+      - backend1
