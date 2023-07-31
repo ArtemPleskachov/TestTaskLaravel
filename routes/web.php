@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test2', function () {
+	return 'Why do you work!!!';
+});
+
+Route::get('/test', [TestController::class, 'test']);
+
+
+Route::get('/users', [ClientsController::class, 'index'])->name('users');
+
+Route::get('/check', [ClientsController::class, 'checkDatabaseConnection']);
+
+
+//Route::get('/users/json', [ClientController::class, 'showJSON']);
+
