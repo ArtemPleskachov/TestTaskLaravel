@@ -28,6 +28,7 @@ class SyncService
 			foreach ($data as $user) {
 				$company = Company::updateOrCreate([
 					'user_id' => $user['id'] //search parametrs
+					//'company_name' => $user['company']['name'],
 				],[
 					'company_name' => $user['company']['name'],
 					'company_catchPhrase' => $user['company']['catchPhrase'],
